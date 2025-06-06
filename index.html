@@ -443,13 +443,30 @@
             background: linear-gradient(to right, #1976D2, #1565C0);
             /* Tom de azul mais intenso */
         }
+
+        /* Estilos do rodapé */
+        .site-footer {
+            width: 100%;
+            text-align: center;
+            padding: 1rem 0;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: 200; /* Para a fonte ser bem fininha */
+            position: fixed; /* Fixa o footer na tela */
+            bottom: 0; /* Alinha na parte inferior */
+            left: 0;
+            z-index: 10; /* Garante que ele fique acima de outros elementos, como o degradê */
+            background-color: transparent; /* Fundo transparente */
+        }
     </style>
 </head>
 
 <body>
     <div class="td">
         <header>
-            <img src="tullu.png" alt="Logo Tullu">
+            <a href="https://www.instagram.com/tulludigital?igsh=OHc0YjA5MGFkNXo0&utm_source=qr" target="_blank">
+                <img src="tullu.png" alt="Logo Tullu">
+            </a>
         </header>
 
         <div class="hero">
@@ -475,6 +492,11 @@
 
         <div class="degrade"></div>
     </div>
+    
+    <footer class="site-footer">
+        All Rights Reserved to Tullu Digital - Rhyan Oliveira Almeida <br> CNPJ 61.043.540.0001/47
+    </footer>
+
     <script>
         // Use a constante para o link do WhatsApp para facilitar a manutenção
         const WHATSAPP_LINK = "https://shre.ink/Mz7C";
@@ -510,7 +532,7 @@
             let perguntasReaisRespondidas = 0;
 
             for (let j = 0; j < indice; j++) {
-                if (perguntas[j].tipo !== 'titulo') {
+                if (perguntas[j].isnttipo !== 'titulo') {
                     perguntasReaisRespondidas++;
                 }
             }
