@@ -19,12 +19,11 @@
         /* Estilos do corpo da página - Permite scroll na tela toda */
         body {
             background: black;
-            /* overflow: hidden; foi removido para permitir o scroll */
-            min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
-            display: flex; /* Mantém flex para centralizar o .td */
-            flex-direction: column; /* Necessário para alinhar o .td verticalmente */
-            align-items: center; /* Centraliza o .td horizontalmente */
-            justify-content: flex-start; /* Alinha o .td ao topo do body */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
         }
 
         /* Contêiner principal (td) */
@@ -34,16 +33,16 @@
             display: flex;
             flex-direction: column;
             align-items: center; /* Centraliza horizontalmente o conteúdo */
-            /* justify-content foi removido para permitir o fluxo natural e scroll */
-            gap: 1rem; /* Espaçamento entre os filhos diretos (header, hero, formulario) */
-            padding: 1rem 1rem 4rem 1rem; /* Padding geral e um padding extra na parte inferior para respiro quando houver scroll */
+            justify-content: space-between; /* Distribui o espaço entre os itens */
+            padding: 2rem 1rem 4rem 1rem; /* Mais padding no topo e no fundo */
         }
 
         /* Cabeçalho */
         header {
-            padding: clamp(1rem, 5vh, 4rem) 1rem 0; /* Espaçamento superior variável para o logo */
+            padding: 2rem 1rem 0; /* Mais padding superior para o logo subir */
             text-align: center;
             width: 100%;
+            flex-shrink: 0; /* Garante que o header não encolha */
         }
 
         /* Logo Tullu */
@@ -61,11 +60,18 @@
             font-weight: bold;
             animation: fadeIn 1s ease-in-out;
             padding: 0 1rem;
-            flex-shrink: 0;
+            flex-grow: 1; /* Permite que o hero ocupe o espaço disponível, empurrando para o centro */
+            display: flex;
+            flex-direction: column;
+            justify-content: center; /* Centraliza o conteúdo do hero verticalmente */
+            align-items: center;
+        }
+
+        .hero h1 {
+            margin-bottom: 1.5rem; /* Espaçamento entre o título e o botão */
         }
 
         .hero button {
-            margin-top: 1.5rem;
             padding: 0.8rem 1.8rem;
             font-size: 1.1rem;
             border: 3px solid #02acfc;
@@ -86,14 +92,13 @@
             padding: 1rem;
             display: none; /* Inicia oculto, controlado por JS */
             animation: fadeIn 1s ease-in-out;
-            /* overflow-y e max-height removidos para que o scroll vá para o body */
             display: flex;
             flex-direction: column;
             justify-content: flex-start; /* Alinha o conteúdo das perguntas ao topo do formulário */
             align-items: center;
             width: 95%;
             margin: 0 auto;
-            flex-grow: 1;
+            flex-grow: 1; /* Permite que o formulário cresça para ocupar o espaço disponível */
         }
 
         /* Estilo de cada pergunta */
@@ -212,11 +217,26 @@
             }
         }
 
+        /* Animação de brilho neon para o botão */
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 0 0 5px #02acfc, 0 0 10px #02acfc;
+            }
+            50% {
+                box-shadow: 0 0 20px #02acfc, 0 0 40px #02acfc;
+            }
+            100% {
+                box-shadow: 0 0 5px #02acfc, 0 0 10px #02acfc;
+            }
+        }
+
         /* Estilo do parágrafo de feedback */
         .feedback {
             background: linear-gradient(to right, #001630, black);
             padding: 1rem;
             border-radius: 40px;
+            /* Garante que a fonte seja aplicada */
+            font-family: 'Acumin Pro', sans-serif; 
             color: white;
             font-size: clamp(0.9rem, 3.5vw, 1.1rem);
             line-height: 1.5;
@@ -224,7 +244,6 @@
             max-width: 100%;
             box-sizing: border-box;
             overflow-wrap: break-word;
-            /* overflow-y e max-height removidos para que o scroll vá para o body */
         }
 
         /* Estilos para o botão de CTA no feedback */
@@ -240,6 +259,9 @@
             color: white;
             text-decoration: none;
             display: inline-block;
+            /* Aplica o brilho neon e a animação de pulso */
+            box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc; 
+            animation: neonPulse 2s infinite ease-in-out; /* Animação de pulso */
         }
 
         .feedback + button:hover {
@@ -294,14 +316,27 @@
         function renderizarProgresso() {
             const progresso = document.getElementById('progresso');
             progresso.innerHTML = '';
-            const total = perguntas.filter(p => p.tipo !== 'titulo').length;
+            const total = perguntas.filter(p => p.tipo !== 'titulo').length; // Conta apenas perguntas reais
+            // A bolinha ativa deve ser o índice atual da pergunta (base 0)
             for (let i = 0; i < total; i++) {
                 const bolinha = document.createElement('div');
                 bolinha.className = 'bolinha';
-                if (i <= indice) bolinha.classList.add('ativa');
+                // Verifica se a bolinha corresponde ao índice da pergunta atual
+                // e não ignora títulos na contagem das bolinhas, mas pula o título na exibição.
+                // Ajustamos a lógica para considerar apenas as perguntas 'reais' no progresso.
+                let perguntasReaisPassadas = 0;
+                for (let j = 0; j < indice; j++) {
+                    if (perguntas[j].tipo !== 'titulo') {
+                        perguntasReaisPassadas++;
+                    }
+                }
+                if (i < perguntasReaisPassadas) { // A bolinha fica ativa se a pergunta correspondente já foi respondida
+                    bolinha.classList.add('ativa');
+                }
                 progresso.appendChild(bolinha);
             }
         }
+
 
         function renderizarPergunta() {
             const container = document.getElementById('perguntas');
@@ -312,8 +347,8 @@
                 const titulo = document.createElement('h2');
                 titulo.textContent = atual.texto;
                 container.appendChild(titulo);
-                indice++;
-                renderizarPergunta();
+                indice++; // Avança o índice para a próxima pergunta real
+                renderizarPergunta(); // Chama a função novamente para renderizar a próxima pergunta
                 return;
             }
 
@@ -378,7 +413,7 @@
                     <button><a href="https://shre.ink/Mz7C" target="_blank" style="color:white; text-decoration:none;">Quero vender mais</a></button>
                 `;
                 document.getElementById('progresso').style.display = 'none'; // Esconde as bolinhas de progresso
-                formulario.style.justifyContent = 'flex-start'; // Alinha o feedback ao topo do formulário
+                formulario.style.justifyContent = 'center'; // Centraliza o feedback verticalmente
                 formulario.style.alignItems = 'center'; // Centraliza o feedback horizontalmente
             }
         }
