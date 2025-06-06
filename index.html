@@ -452,4 +452,64 @@
                 if (linguagemFormal) {
                     feedbackText = `
                         ✅ **Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads.** Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
-                        <br><br>Sua atual abordagem manual representa uma lim
+                        <br><br>Sua atual abordagem manual representa uma limitação à escalabilidade. **A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.**
+                    `;
+                } else { // Linguagem mais persuasiva/vendedora para metas menores ou leigos em geral
+                    feedbackText = `
+                        ✅ **Seu negócio tem muito a crescer com nossa ajuda!** Parece que você ainda não está aproveitando ao máximo as ferramentas de tráfego pago e inteligência artificial. Com a Tullu Digital, vamos turbinar sua captação de leads e automatizar seu atendimento para que você venda muito mais, sem precisar contratar mais gente. Somos especialistas em marketing 360º, com a visão de um estrategista digital focado em crescimento e IA. Este formulário que você acabou de preencher é só uma amostra do que fazemos!
+                        <br><br>Trabalhar "no manual" está te fazendo perder vendas. **A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!**
+                    `;
+                }
+            } else {
+                // Cenário 2: Usuário não é "leigo" em nenhuma área (já conhece de IA/CRM/Tráfego/Automação)
+                // Usar o feedback "positivo" original, ajustando a formalidade
+                if (linguagemFormal) {
+                    feedbackText = `
+                        ✅ **Seu negócio já demonstra um excelente alinhamento com as estratégias de crescimento e IA.** Dada a sua capacidade de gestão de leads, é possível automatizar até 100% do seu atendimento diário. Nossas soluções de chatbot inteligente podem exponencializar seus resultados de fechamento, sem a necessidade de expansão da equipe.
+                        <br><br>Adicionalmente, oferecemos estratégias completas em captação de leads, otimização da presença digital e consolidação da autoridade da sua marca. Nosso approach 360º, que inclui a metodologia utilizada neste próprio formulário, visa impulsionar seus objetivos de faturamento.
+                        <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. **A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.**
+                    `;
+                } else { // Linguagem mais persuasiva/vendedora para metas menores, mesmo para quem já conhece
+                    feedbackText = `
+                        ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!
+                        <br><br>Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.
+                    `;
+                }
+            }
+            return feedbackText;
+        }
+
+        function avancar() {
+            // Se for um input de texto, pega o valor do input antes de avançar
+            if (perguntas[indice].tipo === 'input') {
+                const inputElement = document.getElementById('respostaInput');
+                if (inputElement) {
+                    // Armazena a resposta da pergunta atual (nicho)
+                    if (indice === 0) { // Pergunta 1 é a de índice 0
+                        respostasUsuario['nicho'] = inputElement.value.trim();
+                    }
+                }
+            }
+            // A lógica de armazenamento para as opções já está nos onclicks dos botões dentro de renderizarPergunta()
+
+            indice++;
+            if (indice < perguntas.length) {
+                renderizarPergunta();
+                renderizarProgresso();
+            } else {
+                const formulario = document.getElementById('formulario');
+                const feedbackFinal = gerarFeedback(); // Chama a função para obter o feedback personalizado
+
+                formulario.innerHTML = `
+                    <p class="feedback">${feedbackFinal}</p>
+                    <button><a href="https://shre.ink/Mz7C" target="_blank" style="color:white; text-decoration:none;"><strong>QUERO VENDER MAIS</strong></a></button>
+                `;
+                document.getElementById('progresso').style.display = 'none';
+                formulario.style.justifyContent = 'center';
+                formulario.style.alignItems = 'center';
+            }
+        }
+    </script>
+</body>
+
+</html>
