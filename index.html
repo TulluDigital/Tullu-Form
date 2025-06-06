@@ -85,8 +85,7 @@
             box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc;
             animation: neonPulse 2s infinite ease-in-out;
             font-weight: normal;
-              font-weight: bold;
-
+            font-weight: bold;
             margin-top: 2rem;
             /* Margem acima do botão */
             margin-bottom: 2rem;
@@ -469,7 +468,7 @@
                 <p>Na Tullu Digital, não vendemos apenas ferramentas; entregamos Inteligência Comercial com IA Aplicada. Combinamos Growth Marketing com soluções de automação de ponta para que seu negócio alcance novos patamares de vendas e lucro, sem a necessidade de expandir sua equipe.</p>
                 <p>Nossa visão 360º vai além do básico: desde a captação estratégica de leads e a construção de funis de vendas eficazes até a conversão automatizada impulsionada por inteligência artificial. Entendemos o mercado e aplicamos esse conhecimento para acelerar e alavancar seus resultados.</p>
             </div>
-            </div>
+        </div>
 
         <div id="formulario">
             <div id="progresso"></div>
@@ -631,11 +630,14 @@
                 linguagemFormal = true;
             }
 
+            const fraseNicho = `Certo, seu negócio de **${respostasUsuario['nicho']}** pode inovar hoje mesmo!`;
+
             // Cenário 1: Usuário "leigo" em alguma área (precisa de mais automação ou captação)
             if (leigoCaptacao || leigoChatbots || leigoCRM_IA) {
                 if (linguagemFormal) {
                     feedbackCompleto += `
                         <p>
+                            ${fraseNicho}<br><br>
                             ✅ Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads. Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero saber mais</a>
                         </p>
@@ -643,6 +645,7 @@
 
                     feedbackCompleto += `
                         <p style="margin-top: 1rem; line-height: 1.6;">
+                            ${fraseNicho}<br><br>
                             Sua atual abordagem manual representa uma limitação à escalabilidade. A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.
                             Imagine reduzir seus custos de aquisição de clientes em até 30% e aumentar sua taxa de conversão em 25% com a aplicação de funis de vendas inteligentes e automação. Isso se traduz diretamente em mais lucratividade para o seu negócio sem a necessidade de mais pessoal.
                             <br><br>
@@ -656,6 +659,7 @@
                 } else { // Linguagem mais persuasiva/vendedora para metas menores ou leigos em geral
                     feedbackCompleto += `
                         <p>
+                            ${fraseNicho}<br><br>
                             ✅ Seu negócio tem muito a crescer com nossa ajuda! Parece que você ainda não está aproveitando ao máximo as ferramentas de tráfego pago e inteligência artificial. Com a Tullu Digital, vamos turbinar sua captação de leads e automatizar seu atendimento para que você venda muito mais, sem precisar contratar mais gente. Somos especialistas em marketing 360º, com a visão de um estrategista digital focado em crescimento e IA. Este formulário que você acabou de preencher é só uma amostra do que fazemos!
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Como a Tullu pode me ajudar?</a>
                         </p>
@@ -663,6 +667,7 @@
 
                     feedbackCompleto += `
                         <p style="margin-top: 1rem; line-height: 1.6;">
+                            ${fraseNicho}<br><br>
                             Trabalhar "no manual" está te fazendo perder vendas. A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!
                             <br><br>
                             **Case de Sucesso (Empresa de Pequeno Porte):** Um cliente no setor de **${respostasUsuario['nicho'] || 'serviços'}**, com 50 atendimentos/mês, conseguiu **dobrar seu faturamento em 3 meses** ao implementar nosso funil de vendas automatizado e campanhas de tráfego pago focadas. O atendimento via IA liberou tempo da equipe para focar no fechamento, sem a necessidade de novas contratações.
@@ -677,6 +682,7 @@
                 if (linguagemFormal) {
                     feedbackCompleto += `
                         <p>
+                            ${fraseNicho}<br><br>
                             ✅ Seu negócio já demonstra um excelente alinhamento com as estratégias de crescimento e IA. Dada a sua capacidade de gestão de leads, é possível automatizar até 100% do seu atendimento diário. Nossas soluções de chatbot inteligente podem exponencializar seus resultados de fechamento, sem a necessidade de expansão da equipe.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Explorar otimização avançada</a>
                         </p>
@@ -684,6 +690,7 @@
 
                     feedbackCompleto += `
                         <p style="margin-top: 1rem; line-height: 1.6;">
+                            ${fraseNicho}<br><br>
                             Adicionalmente, oferecemos estratégias completas em captação de leads, otimização da presença digital e consolidação da autoridade da sua marca. Nosso approach 360º, que inclui a metodologia utilizada neste próprio formulário, visa impulsionar seus objetivos de faturamento.
                             <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.
                             Seu negócio já possui uma base sólida. Agora, é o momento de identificar gargalos ocultos e implementar soluções de IA que maximizem cada interação com seu cliente. Desde a personalização em escala até a predição de tendências, a Tullu Digital tem a expertise para levar sua empresa ao próximo nível de eficiência e lucratividade.
@@ -694,6 +701,7 @@
                 } else { // Linguagem mais persuasiva/vendedora para metas menores, mesmo para quem já conhece
                     feedbackCompleto += `
                         <p>
+                            ${fraseNicho}<br><br>
                             ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Conhecer soluções para escalar</a>
                         </p>
@@ -701,6 +709,7 @@
 
                     feedbackCompleto += `
                         <p style="margin-top: 1rem; line-height: 1.6;">
+                            ${fraseNicho}<br><br>
                             Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.
                             Vemos que você já está à frente! Que tal aprimorar ainda mais? Empresas que já usam CRM e IA conosco relatam uma **redução de 35% no custo por lead** e um **aumento de 20% no valor do tempo de vida do cliente (LTV)**. Nosso foco é refinar o que já funciona e abrir novas avenidas de receita para você.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero otimizar meus resultados</a>
@@ -727,15 +736,9 @@
                 renderizarProgresso();
             } else {
                 const formulario = document.getElementById('formulario');
-                const feedbackFinal = gerarFeedback();
-
-                formulario.innerHTML = `
-                    <a href="${WHATSAPP_LINK}" target="_blank" class="btn-main-cta" style="margin-top: 3rem; margin-bottom: 2rem;">QUERO VENDER MAIS</a>
-                    ${feedbackFinal}
-                `;
-                document.getElementById('progresso').style.display = 'none';
-                formulario.style.justifyContent = 'flex-start'; // Alinha o botão e feedback ao topo
-                formulario.style.alignItems = 'center';
+                formulario.innerHTML = gerarFeedback();
+                document.getElementById('progresso').style.display = 'none'; // Oculta as bolinhas de progresso ao finalizar
+                formulario.style.justifyContent = 'center'; // Centraliza o feedback verticalmente
             }
         }
     </script>
