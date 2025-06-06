@@ -29,28 +29,37 @@
         /* Contêiner principal (td) */
         .td {
             width: 100%;
-            min-height: 100vh; /* Garante que o conteúdo inicial ocupe a tela toda */
+            min-height: 100vh;
+            /* Garante que o conteúdo inicial ocupe a tela toda */
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centraliza horizontalmente o conteúdo */
-            justify-content: space-between; /* Distribui o espaço entre os itens */
-            padding: 2rem 1rem 4rem 1rem; /* Mais padding no topo e no fundo */
+            align-items: center;
+            /* Centraliza horizontalmente o conteúdo */
+            justify-content: space-between;
+            /* Distribui o espaço entre os itens */
+            padding: 2rem 1rem 4rem 1rem;
+            /* Mais padding no topo e no fundo */
         }
 
         /* Cabeçalho */
         header {
-            padding: 2rem 1rem 0; /* Mais padding superior para o logo subir */
+            padding: 2rem 1rem 0;
+            /* Mais padding superior para o logo subir */
             text-align: center;
             width: 100%;
-            flex-shrink: 0; /* Garante que o header não encolha */
+            flex-shrink: 0;
+            /* Garante que o header não encolha */
         }
 
         /* Logo Tullu */
         header img {
-            width: clamp(100px, 20vw, 200px); /* Tamanho do logo responsivo */
-            height: auto; /* Mantém a proporção original da imagem */
+            width: clamp(100px, 20vw, 200px);
+            /* Tamanho do logo responsivo */
+            height: auto;
+            /* Mantém a proporção original da imagem */
             display: block;
-            margin: 0 auto; /* Centraliza o logo */
+            margin: 0 auto;
+            /* Centraliza o logo */
         }
 
         /* Seção Hero (introdução) */
@@ -60,15 +69,18 @@
             font-weight: bold;
             animation: fadeIn 1s ease-in-out;
             padding: 0 1rem;
-            flex-grow: 1; /* Permite que o hero ocupe o espaço disponível, empurrando para o centro */
+            flex-grow: 1;
+            /* Permite que o hero ocupe o espaço disponível, empurrando para o centro */
             display: flex;
             flex-direction: column;
-            justify-content: center; /* Centraliza o conteúdo do hero verticalmente */
+            justify-content: center;
+            /* Centraliza o conteúdo do hero verticalmente */
             align-items: center;
         }
 
         .hero h1 {
-            margin-bottom: 1.5rem; /* Espaçamento entre o título e o botão */
+            margin-bottom: 1.5rem;
+            /* Espaçamento entre o título e o botão */
         }
 
         .hero button {
@@ -90,15 +102,18 @@
         #formulario {
             max-width: 600px;
             padding: 1rem;
-            display: none; /* Inicia oculto, controlado por JS */
+            display: none;
+            /* Inicia oculto, controlado por JS */
             animation: fadeIn 1s ease-in-out;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Alinha o conteúdo das perguntas ao topo do formulário */
+            justify-content: flex-start;
+            /* Alinha o conteúdo das perguntas ao topo do formulário */
             align-items: center;
             width: 95%;
             margin: 0 auto;
-            flex-grow: 1; /* Permite que o formulário cresça para ocupar o espaço disponível */
+            flex-grow: 1;
+            /* Permite que o formulário cresça para ocupar o espaço disponível */
         }
 
         /* Estilo de cada pergunta */
@@ -233,8 +248,7 @@
         /* Estilo do parágrafo de feedback */
         .feedback {
             background: linear-gradient(to right, #001630, black);
-            /* Aumentei o padding para dar mais respiro ao texto */
-            padding: 1.5rem; 
+            padding: 1.5rem;
             border-radius: 40px;
             font-family: 'Acumin Pro', sans-serif;
             color: white;
@@ -259,7 +273,7 @@
             color: white;
             text-decoration: none;
             display: inline-block;
-            box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc; 
+            box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc;
             animation: neonPulse 2s infinite ease-in-out;
         }
 
@@ -304,10 +318,11 @@
         ];
 
         let indice = 0;
+        const respostasUsuario = {}; // Objeto para armazenar as respostas relevantes
 
         function iniciarFormulario() {
             document.querySelector('.hero').style.display = 'none';
-            document.getElementById('formulario').style.display = 'flex'; /* Altera para flex */
+            document.getElementById('formulario').style.display = 'flex';
             renderizarPergunta();
             renderizarProgresso();
         }
@@ -315,10 +330,9 @@
         function renderizarProgresso() {
             const progresso = document.getElementById('progresso');
             progresso.innerHTML = '';
-            const total = perguntas.filter(p => p.tipo !== 'titulo').length; // Conta apenas perguntas reais
+            const total = perguntas.filter(p => p.tipo !== 'titulo').length;
             let perguntasReaisRespondidas = 0;
 
-            // Calcula quantas perguntas "reais" já foram respondidas
             for (let j = 0; j < indice; j++) {
                 if (perguntas[j].tipo !== 'titulo') {
                     perguntasReaisRespondidas++;
@@ -328,14 +342,12 @@
             for (let i = 0; i < total; i++) {
                 const bolinha = document.createElement('div');
                 bolinha.className = 'bolinha';
-                // A bolinha fica ativa se o número da bolinha (i) for menor ou igual ao de perguntas reais respondidas
-                if (i < perguntasReaisRespondidas) { 
+                if (i < perguntasReaisRespondidas) {
                     bolinha.classList.add('ativa');
                 }
                 progresso.appendChild(bolinha);
             }
         }
-
 
         function renderizarPergunta() {
             const container = document.getElementById('perguntas');
@@ -346,8 +358,8 @@
                 const titulo = document.createElement('h2');
                 titulo.textContent = atual.texto;
                 container.appendChild(titulo);
-                indice++; // Avança o índice para a próxima pergunta real
-                renderizarPergunta(); // Chama a função novamente para renderizar a próxima pergunta
+                indice++;
+                renderizarPergunta();
                 return;
             }
 
@@ -379,6 +391,10 @@
                 botaoAvancar.style.color = 'white';
                 botaoAvancar.onclick = () => {
                     if (input.value.trim() !== '') {
+                        // Armazena a resposta da pergunta 1 (nicho)
+                        if (indice === 0) { // Pergunta 1 é a de índice 0
+                            respostasUsuario['nicho'] = input.value.trim();
+                        }
                         avancar();
                     } else {
                         alert('Por favor, preencha a resposta antes de avançar.');
@@ -387,11 +403,26 @@
                 bloco.appendChild(botaoAvancar);
             } else if (atual.tipo === 'opcoes') {
                 const opcoes = document.createElement('div');
-opcoes.className = 'opcoes';
+                opcoes.className = 'opcoes';
                 atual.opcoes.forEach(op => {
                     const botao = document.createElement('button');
                     botao.textContent = op;
-                    botao.onclick = () => avancar();
+                    botao.onclick = () => {
+                        // Armazena a resposta relevante com base no índice da pergunta
+                        // Corrigido para corresponder aos índices do array `perguntas`
+                        if (indice === 3) { // Pergunta 4: "Você já investe em tráfego pago?"
+                            respostasUsuario['trafegoPago'] = op;
+                        } else if (indice === 4) { // Pergunta 5: "Seu atendimento é feito:"
+                            respostasUsuario['atendimento'] = op;
+                        } else if (indice === 6) { // Pergunta 6: "Você tem um CRM ou sistema..."
+                            respostasUsuario['crm'] = op;
+                        } else if (indice === 7) { // Pergunta 7: "Você já tem alguma IA operando..."
+                            respostasUsuario['iaOperando'] = op;
+                        } else if (indice === 9) { // Pergunta 10: "Qual sua meta mensal de faturamento?"
+                            respostasUsuario['metaFaturamento'] = op;
+                        }
+                        avancar();
+                    };
                     opcoes.appendChild(botao);
                 });
                 bloco.appendChild(opcoes);
@@ -400,23 +431,25 @@ opcoes.className = 'opcoes';
             container.appendChild(bloco);
         }
 
-        function avancar() {
-            indice++;
-            if (indice < perguntas.length) {
-                renderizarPergunta();
-                renderizarProgresso();
-            } else {
-                const formulario = document.getElementById('formulario');
-                formulario.innerHTML = `
-                    <p class="feedback"> ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade, somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!<br><br> Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.</p>
-                    <button><a href="https://shre.ink/Mz7C" target="_blank" style="color:white; text-decoration:none;"><strong>QUERO VENDER MAIS</strong></a></button>
-                `;
-                document.getElementById('progresso').style.display = 'none'; // Esconde as bolinhas de progresso
-                formulario.style.justifyContent = 'center'; // Centraliza o feedback verticalmente
-                formulario.style.alignItems = 'center'; // Centraliza o feedback horizontalmente
-            }
-        }
-    </script>
-</body>
+        function gerarFeedback() {
+            let feedbackText = "";
+            let linguagemFormal = false; // Controla se a linguagem deve ser mais formal
 
-</html>
+            // Verifica se as respostas indicam um perfil "leigo"
+            const leigoCaptacao = (respostasUsuario['trafegoPago'] === 'Não' || respostasUsuario['trafegoPago'] === 'Tentou mas não deu certo');
+            const leigoChatbots = (respostasUsuario['atendimento'] === '100% manual');
+            const leigoCRM_IA = (respostasUsuario['crm'] === 'Não' || respostasUsuario['iaOperando'] === 'Não');
+
+            // Define a linguagem com base na meta de faturamento
+            if (respostasUsuario['metaFaturamento'] === 'Acima de R$100 mil' || respostasUsuario['metaFaturamento'] === 'R$50 mil – R$100 mil') {
+                linguagemFormal = true;
+            }
+
+            // --- Lógica para os feedbacks personalizados ---
+
+            // Cenário 1: Usuário é "leigo" em alguma das áreas-chave (captação, chatbots, IA/CRM)
+            if (leigoCaptacao || leigoChatbots || leigoCRM_IA) {
+                if (linguagemFormal) {
+                    feedbackText = `
+                        ✅ **Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads.** Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
+                        <br><br>Sua atual abordagem manual representa uma lim
