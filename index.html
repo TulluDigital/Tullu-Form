@@ -7,6 +7,7 @@
     <title>Tullu Forms</title>
     <link href="https://fonts.googleapis.com/css2?family=Acumin+Pro:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* Reset básico e fontes */
         * {
             margin: 0;
             padding: 0;
@@ -15,48 +16,56 @@
             color: white;
         }
 
+        /* Estilos do corpo da página - Permite scroll na tela toda */
         body {
             background: black;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            /* overflow: hidden; foi removido para permitir o scroll */
+            min-height: 100vh; /* Garante que o body ocupe pelo menos a altura da viewport */
+            display: flex; /* Mantém flex para centralizar o .td */
+            flex-direction: column; /* Necessário para alinhar o .td verticalmente */
+            align-items: center; /* Centraliza o .td horizontalmente */
+            justify-content: flex-start; /* Alinha o .td ao topo do body */
         }
 
+        /* Contêiner principal (td) */
         .td {
             width: 100%;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh; /* Garante que o conteúdo inicial ocupe a tela toda */
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center; /* Centraliza verticalmente o conteúdo */
-            padding: 1rem; /* Adiciona um padding geral para respiro */
+            align-items: center; /* Centraliza horizontalmente o conteúdo */
+            /* justify-content foi removido para permitir o fluxo natural e scroll */
+            gap: 1rem; /* Espaçamento entre os filhos diretos (header, hero, formulario) */
+            padding: 1rem 1rem 4rem 1rem; /* Padding geral e um padding extra na parte inferior para respiro quando houver scroll */
         }
 
+        /* Cabeçalho */
         header {
-            padding: 1rem; /* Reduzido para dar mais espaço ao formulário */
+            padding: clamp(1rem, 5vh, 4rem) 1rem 0; /* Espaçamento superior variável para o logo */
             text-align: center;
+            width: 100%;
         }
 
+        /* Logo Tullu */
         header img {
-            width: clamp(100px, 20vw, 200px); /* Ajusta o tamanho máximo do logo */
-            max-height: 10vh; /* Limita a altura do logo para não ocupar muito espaço */
-            height: auto;
+            width: clamp(100px, 20vw, 200px); /* Tamanho do logo responsivo */
+            height: auto; /* Mantém a proporção original da imagem */
+            display: block;
+            margin: 0 auto; /* Centraliza o logo */
         }
 
+        /* Seção Hero (introdução) */
         .hero {
             text-align: center;
-            margin-top: 1rem;
             font-size: 1rem;
             font-weight: bold;
             animation: fadeIn 1s ease-in-out;
-            padding: 0 1rem; /* Adiciona padding para evitar que o texto encoste nas bordas */
+            padding: 0 1rem;
+            flex-shrink: 0;
         }
 
         .hero button {
-            margin-top: 1.5rem; /* Ajustado para um pouco menos de espaço */
+            margin-top: 1.5rem;
             padding: 0.8rem 1.8rem;
             font-size: 1.1rem;
             border: 3px solid #02acfc;
@@ -71,35 +80,37 @@
             border-color: #02acfc;
         }
 
+        /* Formulário principal */
         #formulario {
             max-width: 600px;
             padding: 1rem;
-            display: none;
+            display: none; /* Inicia oculto, controlado por JS */
             animation: fadeIn 1s ease-in-out;
-            overflow-y: auto; /* Permite scroll interno se o conteúdo for muito grande */
-            max-height: 80vh; /* Limita a altura máxima do formulário para caber na tela */
-            display: flex; /* Adicionado para centralizar e ajustar o conteúdo */
-            flex-direction: column; /* Organiza os itens em coluna */
-            justify-content: center; /* Centraliza os itens verticalmente */
-            align-items: center; /* Centraliza os itens horizontalmente */
-            width: 95%; /* Garante que o formulário ocupe quase toda a largura em telas menores */
+            /* overflow-y e max-height removidos para que o scroll vá para o body */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Alinha o conteúdo das perguntas ao topo do formulário */
+            align-items: center;
+            width: 95%;
             margin: 0 auto;
+            flex-grow: 1;
         }
 
-
+        /* Estilo de cada pergunta */
         .pergunta {
-            margin-bottom: 1.5rem; /* Ajustado para menos espaço */
+            margin-bottom: 1.5rem;
             animation: fadeIn 1s ease-in-out;
-            width: 100%; /* Garante que a pergunta ocupe a largura total do formulário */
+            width: 100%;
             text-align: center;
         }
 
         .pergunta h2 {
             font-weight: bold;
-            margin-bottom: 0.8rem; /* Ajustado para menos espaço */
-            font-size: clamp(1rem, 4vw, 1.5rem); /* Tamanho da fonte responsivo */
+            margin-bottom: 0.8rem;
+            font-size: clamp(1rem, 4vw, 1.5rem);
         }
 
+        /* Inputs de texto e número */
         input[type="text"],
         input[type="number"] {
             width: 100%;
@@ -117,12 +128,13 @@
             font-weight: normal;
         }
 
+        /* Opções de botões */
         .opcoes {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem; /* Reduzido para menos espaço entre as opções */
+            gap: 0.8rem;
             animation: fadeIn 1s ease-in-out;
-            width: 100%; /* Garante que as opções ocupem a largura total do formulário */
+            width: 100%;
         }
 
         .opcoes button {
@@ -133,9 +145,9 @@
             transition: 0.3s;
             border-radius: 20px;
             font-weight: normal;
-            font-size: clamp(0.9rem, 3vw, 1.1rem); /* Tamanho da fonte responsivo */
-            white-space: normal; /* Permite que o texto quebre linha */
-            word-wrap: break-word; /* Garante que palavras longas sejam quebradas */
+            font-size: clamp(0.9rem, 3vw, 1.1rem);
+            white-space: normal;
+            word-wrap: break-word;
         }
 
         .opcoes button:hover {
@@ -143,17 +155,19 @@
             border-color: #02acfc;
         }
 
+        /* Indicador de progresso (bolinhas) */
         #progresso {
             display: flex;
             justify-content: center;
-            gap: 0.4rem; /* Reduzido para menos espaço entre as bolinhas */
-            margin-bottom: 1.5rem; /* Ajustado para menos espaço */
-            margin-top: 1.5rem; /* Ajustado para menos espaço */
+            gap: 0.4rem;
+            margin-bottom: 1.5rem;
+            margin-top: 1.5rem;
+            flex-shrink: 0;
         }
 
         .bolinha {
-            width: 12px; /* Tamanho da bolinha ligeiramente menor */
-            height: 12px; /* Tamanho da bolinha ligeiramente menor */
+            width: 12px;
+            height: 12px;
             border-radius: 50%;
             background-color: #001630;
         }
@@ -162,6 +176,7 @@
             background-color: #02acfb;
         }
 
+        /* Degradê de fundo */
         .degrade {
             position: fixed;
             bottom: 0;
@@ -172,6 +187,7 @@
             z-index: -1;
         }
 
+        /* Animações */
         @keyframes subirDegrade {
             from {
                 transform: translateY(100%);
@@ -196,19 +212,19 @@
             }
         }
 
+        /* Estilo do parágrafo de feedback */
         .feedback {
             background: linear-gradient(to right, #001630, black);
-            padding: 1rem; /* Padding ajustado para ser mais compacto */
+            padding: 1rem;
             border-radius: 40px;
             color: white;
-            font-size: clamp(0.9rem, 3.5vw, 1.1rem); /* Tamanho da fonte responsivo */
-            line-height: 1.5; /* Altura da linha ajustada */
-            margin-top: 1.5rem; /* Espaçamento superior ajustado */
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            line-height: 1.5;
+            margin-top: 1.5rem;
             max-width: 100%;
             box-sizing: border-box;
             overflow-wrap: break-word;
-            overflow-y: auto; /* Permite scroll interno para o feedback */
-            max-height: 60vh; /* Limita a altura do feedback para caber na tela */
+            /* overflow-y e max-height removidos para que o scroll vá para o body */
         }
 
         /* Estilos para o botão de CTA no feedback */
@@ -222,8 +238,8 @@
             cursor: pointer;
             transition: 0.3s;
             color: white;
-            text-decoration: none; /* Garante que o link não tenha sublinhado */
-            display: inline-block; /* Permite aplicar padding e margin */
+            text-decoration: none;
+            display: inline-block;
         }
 
         .feedback + button:hover {
@@ -362,7 +378,7 @@
                     <button><a href="https://shre.ink/Mz7C" target="_blank" style="color:white; text-decoration:none;">Quero vender mais</a></button>
                 `;
                 document.getElementById('progresso').style.display = 'none'; // Esconde as bolinhas de progresso
-                formulario.style.justifyContent = 'center'; // Centraliza o feedback verticalmente
+                formulario.style.justifyContent = 'flex-start'; // Alinha o feedback ao topo do formulário
                 formulario.style.alignItems = 'center'; // Centraliza o feedback horizontalmente
             }
         }
