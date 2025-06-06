@@ -76,10 +76,13 @@
             justify-content: center;
             /* Centraliza o conteúdo do hero verticalmente */
             align-items: center;
-            width: 100%; /* Garante que o hero ocupe a largura total */
+            width: 100%;
+            /* Garante que o hero ocupe a largura total */
         }
 
         .hero h1 {
+            margin-top: 3rem;
+            /* Aumentei a margem superior aqui */
             margin-bottom: 1.5rem;
             /* Espaçamento entre o título e o botão */
             font-size: clamp(1.5rem, 5vw, 2.5rem);
@@ -93,7 +96,8 @@
             background: linear-gradient(to right, #001630, black);
             cursor: pointer;
             transition: 0.3s;
-            color: white; /* Garante que o texto do botão seja branco */
+            color: white;
+            /* Garante que o texto do botão seja branco */
         }
 
         .hero button:hover {
@@ -103,23 +107,38 @@
 
         /* Novo estilo para o conteúdo inicial (abaixo do botão "Começar") */
         .conteudo-inicial {
-            margin-top: 5rem; /* Margem considerável abaixo do botão */
+            margin-top: 5rem;
+            /* Margem considerável abaixo do botão */
             padding: 1.5rem;
             background: linear-gradient(to right, #001630, black);
-            border: 3px solid #02acfc; /* Borda azul ciano */
+            border: 3px solid #02acfc;
+            /* Borda azul ciano */
             border-radius: 20px;
             text-align: center;
-            max-width: 600px; /* Limita a largura para melhor leitura */
-            width: 95%; /* Ocupa quase toda a largura em telas menores */
-            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
-            animation: fadeIn 1s ease-in-out; /* Animação de entrada */
-            display: block; /* Visível por padrão, será oculto pelo JS quando o formulário iniciar */
+            max-width: 600px;
+            /* Limita a largura para melhor leitura */
+            width: 95%;
+            /* Ocupa quase toda a largura em telas menores */
+            box-sizing: border-box;
+            /* Garante que padding e border sejam incluídos na largura */
+            animation: fadeIn 1s ease-in-out;
+            /* Animação de entrada */
+            display: block;
+            /* Visível por padrão, será oculto pelo JS quando o formulário iniciar */
         }
 
         .conteudo-inicial h2 {
             font-weight: bold;
             margin-bottom: 1rem;
             font-size: clamp(1.2rem, 4vw, 1.8rem);
+            /* Novos estilos para o h2 do conteúdo inicial */
+            background: linear-gradient(to right, #001630, #02acfc); /* Gradiente lateral */
+            padding: 0.8rem 1.5rem; /* Padding para afastar o texto da borda */
+            border-radius: 20px; /* Cantos arredondados */
+            margin-left: auto; /* Centraliza o bloco do h2 */
+            margin-right: auto; /* Centraliza o bloco do h2 */
+            max-width: fit-content; /* Ajusta a largura ao conteúdo */
+            margin-bottom: 1.5rem; /* Espaçamento entre h2 e ícones */
         }
 
         .conteudo-inicial p {
@@ -130,15 +149,22 @@
 
         .icones-tullu {
             display: flex;
-            justify-content: space-around; /* Distribui os ícones igualmente */
+            justify-content: space-around;
+            /* Distribui os ícones igualmente */
             align-items: center;
-            margin-top: 1.5rem;
-            flex-wrap: wrap; /* Quebra linha se a tela for muito pequena */
-            gap: 1rem; /* Espaço entre as imagens em telas menores */
+            margin-top: 1rem;
+            /* Ajustado para ficar abaixo do h2 */
+            margin-bottom: 1.5rem;
+            /* Adicionado margem para separar do parágrafo */
+            flex-wrap: wrap;
+            /* Quebra linha se a tela for muito pequena */
+            gap: 1rem;
+            /* Espaço entre as imagens em telas menores */
         }
 
         .icones-tullu img {
-            width: clamp(60px, 15vw, 100px); /* Tamanho responsivo para os ícones */
+            width: clamp(60px, 15vw, 100px);
+            /* Tamanho responsivo para os ícones */
             height: auto;
             display: block;
             margin: 0 auto;
@@ -305,6 +331,8 @@
             max-width: 100%;
             box-sizing: border-box;
             overflow-wrap: break-word;
+            border: 3px solid white; /* Contorno branco */
+            box-shadow: 0 0 15px white, 0 0 30px white; /* Brilho branco */
         }
 
         /* Estilos para o botão de CTA no feedback */
@@ -343,13 +371,13 @@
 
             <div class="conteudo-inicial" id="conteudoInicial">
                 <h2>Transforme seu Potencial em Lucro Real.</h2>
-                <p>Na <strong>Tullu Digital</strong>, não vendemos apenas ferramentas; entregamos <strong>Inteligência Comercial com IA Aplicada</strong>. Combinamos **Growth Marketing** com soluções de **automação** de ponta para que seu negócio alcance novos patamares de **vendas e lucro**, sem a necessidade de expandir sua equipe.</p>
-                <p>Nossa visão **360º** vai além do básico: desde a **captação estratégica de leads** e a construção de **funis de vendas** eficazes até a **conversão automatizada** impulsionada por inteligência artificial. Entendemos o mercado e aplicamos esse conhecimento para **acelerar e alavancar** seus resultados.</p>
                 <div class="icones-tullu">
                     <img src="img.png" alt="Ícone de Lucro">
                     <img src="img2.png" alt="Ícone de Vendas">
                     <img src="img3.png" alt="Ícone de Automação">
                 </div>
+                <p>Na Tullu Digital, não vendemos apenas ferramentas; entregamos Inteligência Comercial com IA Aplicada. Combinamos Growth Marketing com soluções de automação de ponta para que seu negócio alcance novos patamares de vendas e lucro, sem a necessidade de expandir sua equipe.</p>
+                <p>Nossa visão 360º vai além do básico: desde a captação estratégica de leads e a construção de funis de vendas eficazes até a conversão automatizada impulsionada por inteligência artificial. Entendemos o mercado e aplicamos esse conhecimento para acelerar e alavancar seus resultados.</p>
             </div>
             </div>
 
@@ -513,21 +541,21 @@
             if (leigoCaptacao || leigoChatbots || leigoCRM_IA) {
                 if (linguagemFormal) {
                     feedbackText = `
-                        ✅ **Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads.** Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
-                        <br><br>Sua atual abordagem manual representa uma limitação à escalabilidade. **A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.**
+                        ✅ Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads. Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
+                        <br><br>Sua atual abordagem manual representa uma limitação à escalabilidade. A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.
                     `;
                 } else {
                     feedbackText = `
-                        ✅ **Seu negócio tem muito a crescer com nossa ajuda!** Parece que você ainda não está aproveitando ao máximo as ferramentas de tráfego pago e inteligência artificial. Com a Tullu Digital, vamos turbinar sua captação de leads e automatizar seu atendimento para que você venda muito mais, sem precisar contratar mais gente. Somos especialistas em marketing 360º, com a visão de um estrategista digital focado em crescimento e IA. Este formulário que você acabou de preencher é só uma amostra do que fazemos!
-                        <br><br>Trabalhar "no manual" está te fazendo perder vendas. **A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!**
+                        ✅ Seu negócio tem muito a crescer com nossa ajuda! Parece que você ainda não está aproveitando ao máximo as ferramentas de tráfego pago e inteligência artificial. Com a Tullu Digital, vamos turbinar sua captação de leads e automatizar seu atendimento para que você venda muito mais, sem precisar contratar mais gente. Somos especialistas em marketing 360º, com a visão de um estrategista digital focado em crescimento e IA. Este formulário que você acabou de preencher é só uma amostra do que fazemos!
+                        <br><br>Trabalhar "no manual" está te fazendo perder vendas. A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!
                     `;
                 }
             } else {
                 if (linguagemFormal) {
                     feedbackText = `
-                        ✅ **Seu negócio já demonstra um excelente alinhamento com as estratégias de crescimento e IA.** Dada a sua capacidade de gestão de leads, é possível automatizar até 100% do seu atendimento diário. Nossas soluções de chatbot inteligente podem exponencializar seus resultados de fechamento, sem a necessidade de expansão da equipe.
+                        ✅ Seu negócio já demonstra um excelente alinhamento com as estratégias de crescimento e IA. Dada a sua capacidade de gestão de leads, é possível automatizar até 100% do seu atendimento diário. Nossas soluções de chatbot inteligente podem exponencializar seus resultados de fechamento, sem a necessidade de expansão da equipe.
                         <br><br>Adicionalmente, oferecemos estratégias completas em captação de leads, otimização da presença digital e consolidação da autoridade da sua marca. Nosso approach 360º, que inclui a metodologia utilizada neste próprio formulário, visa impulsionar seus objetivos de faturamento.
-                        <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. **A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.**
+                        <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.
                     `;
                 } else {
                     feedbackText = `
@@ -562,7 +590,7 @@
 
                 formulario.innerHTML = `
                     <p class="feedback">${feedbackFinal}</p>
-                    <button><a href="https://shre.ink/Mz7C" target="_blank" style="color:white; text-decoration:none;"><strong>QUERO VENDER MAIS</strong></a></button>
+                    <button><a href="https://shre.ink/Mz7C" target="_blank" style="color:white; text-decoration:none;">QUERO VENDER MAIS</a></button>
                 `;
                 document.getElementById('progresso').style.display = 'none';
                 formulario.style.justifyContent = 'center';
