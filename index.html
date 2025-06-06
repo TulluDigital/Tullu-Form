@@ -81,6 +81,29 @@
       font-weight: normal;
       font-size: 1rem;
     }
+input[type="text"],
+input[type="number"] {
+  border-radius: 20px; /* já aplica em todos os inputs */
+}
+
+.botao-proximo {
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  border: 3px solid #02acfc;
+  border-radius: 20px;
+  background: linear-gradient(to right, #001630, black);
+  cursor: pointer;
+  transition: 0.3s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.botao-proximo:hover {
+  background: #02acfc;
+  border-color: black;
+}
 
     input::placeholder {
       color: rgba(255, 255, 255, 0.4);
@@ -216,80 +239,64 @@
     }
 
     function renderizarPergunta() {
-      const container = document.getElementById('perguntas');
-      container.innerHTML = '';
-      const atual = perguntas[indice];
+  const container = document.getElementById('perguntas');
+  container.innerHTML = '';
 
-      if (atual.tipo === 'titulo') {
-        const titulo = document.createElement('h2');
-        titulo.textContent = atual.texto;
-        container.appendChild(titulo);
-        indice++;
-        renderizarPergunta();
-        return;
+  // pular títulos automaticamente e avançar
+  while (indice < perguntas.length && perguntas[indice].tipo === 'titulo') {
+    const titulo = document.createElement('h2');
+    titulo.textContent = perguntas[indice].texto;
+    container.appendChild(titulo);
+    indice++;
+  }
+
+  // se acabou
+  if (indice >= perguntas.length) {
+    document.getElementById('perguntas').innerHTML = '<p> ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!<br><br> Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.</p>';
+    document.getElementById('progresso').innerHTML = `<button class="botao-proximo"><a href="https://shre.ink/Mz7C" target="_blank" style="color: white; text-decoration: none;">Quero vender mais</a></button>`;
+    return;
+  }
+
+  const atual = perguntas[indice];
+  const bloco = document.createElement('div');
+  bloco.className = 'pergunta';
+
+  const pergunta = document.createElement('h2');
+  pergunta.textContent = atual.texto;
+  bloco.appendChild(pergunta);
+
+  if (atual.tipo === 'input') {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = atual.placeholder || 'Digite aqui';
+    input.id = 'respostaInput';
+    bloco.appendChild(input);
+
+    const botaoAvancar = document.createElement('button');
+    botaoAvancar.textContent = 'Próximo';
+    botaoAvancar.className = 'botao-proximo';
+    botaoAvancar.onclick = () => {
+      if (input.value.trim() !== '') {
+        avancar();
+      } else {
+        alert('Por favor, preencha a resposta antes de avançar.');
       }
+    };
+    bloco.appendChild(botaoAvancar);
+  } else if (atual.tipo === 'opcoes') {
+    const opcoes = document.createElement('div');
+    opcoes.className = 'opcoes';
+    atual.opcoes.forEach(op => {
+      const botao = document.createElement('button');
+      botao.textContent = op;
+      botao.onclick = () => avancar();
+      opcoes.appendChild(botao);
+    });
+    bloco.appendChild(opcoes);
+  }
 
-      const bloco = document.createElement('div');
-      bloco.className = 'pergunta';
-
-      const pergunta = document.createElement('h2');
-      pergunta.textContent = atual.texto;
-      bloco.appendChild(pergunta);
-
-    if (atual.tipo === 'input') {
-  const input = document.createElement('input');
-  input.type = 'text';
-  input.placeholder = atual.placeholder || 'Digite aqui';
-  input.id = 'respostaInput';
-  input.style.borderRadius = '20px'; // <-- Adicionado o border-radius aqui
-  bloco.appendChild(input);
-
-  const botaoAvancar = document.createElement('button');
-  botaoAvancar.textContent = 'Próximo';
-  botaoAvancar.style.marginTop = '2rem';
-  botaoAvancar.style.padding = '1rem 2rem';
-  botaoAvancar.style.fontSize = '1.2rem';
-  botaoAvancar.style.border = '3px solid #02acfc';
-  botaoAvancar.style.borderRadius = '20px';
-  botaoAvancar.style.background = 'linear-gradient(to right, #001630, black)';
-  botaoAvancar.style.cursor = 'pointer';
-  botaoAvancar.style.transition = '0.3s';
-  botaoAvancar.style.display = 'block'; // Centralizar como bloco
-  botaoAvancar.style.marginLeft = 'auto';
-  botaoAvancar.style.marginRight = 'auto';
-  botaoAvancar.onmouseover = function () {
-    botaoAvancar.style.background = '#02acfc';
-    botaoAvancar.style.borderColor = 'black';
-  };
-  botaoAvancar.onmouseout = function () {
-    botaoAvancar.style.background = 'linear-gradient(to right, #001630, black)';
-    botaoAvancar.style.borderColor = '#02acfc';
-  };
-
-  botaoAvancar.onclick = () => {
-    if (input.value.trim() !== '') {
-      avancar();
-    } else {
-      alert('Por favor, preencha a resposta antes de avançar.');
-    }
-  };
-  bloco.appendChild(botaoAvancar);
-};
-  bloco.appendChild(botaoAvancar);
-} else if (atual.tipo === 'opcoes') {
-        const opcoes = document.createElement('div');
-        opcoes.className = 'opcoes';
-        atual.opcoes.forEach(op => {
-          const botao = document.createElement('button');
-          botao.textContent = op;
-          botao.onclick = () => avancar();
-          opcoes.appendChild(botao);
-        });
-        bloco.appendChild(opcoes);
-      }
-
-      container.appendChild(bloco);
-    }
+  container.appendChild(bloco);
+}
 
     function avancar() {
       indice++;
