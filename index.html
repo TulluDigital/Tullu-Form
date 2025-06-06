@@ -76,11 +76,13 @@
             justify-content: center;
             /* Centraliza o conteúdo do hero verticalmente */
             align-items: center;
+            width: 100%; /* Garante que o hero ocupe a largura total */
         }
 
         .hero h1 {
             margin-bottom: 1.5rem;
             /* Espaçamento entre o título e o botão */
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
         }
 
         .hero button {
@@ -91,12 +93,57 @@
             background: linear-gradient(to right, #001630, black);
             cursor: pointer;
             transition: 0.3s;
+            color: white; /* Garante que o texto do botão seja branco */
         }
 
         .hero button:hover {
             background: linear-gradient(to right, #001630, #02acfc);
             border-color: #02acfc;
         }
+
+        /* Novo estilo para o conteúdo inicial (abaixo do botão "Começar") */
+        .conteudo-inicial {
+            margin-top: 5rem; /* Margem considerável abaixo do botão */
+            padding: 1.5rem;
+            background: linear-gradient(to right, #001630, black);
+            border: 3px solid #02acfc; /* Borda azul ciano */
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px; /* Limita a largura para melhor leitura */
+            width: 95%; /* Ocupa quase toda a largura em telas menores */
+            box-sizing: border-box; /* Garante que padding e border sejam incluídos na largura */
+            animation: fadeIn 1s ease-in-out; /* Animação de entrada */
+            display: block; /* Visível por padrão, será oculto pelo JS quando o formulário iniciar */
+        }
+
+        .conteudo-inicial h2 {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+        }
+
+        .conteudo-inicial p {
+            font-size: clamp(0.9rem, 3.5vw, 1.1rem);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .icones-tullu {
+            display: flex;
+            justify-content: space-around; /* Distribui os ícones igualmente */
+            align-items: center;
+            margin-top: 1.5rem;
+            flex-wrap: wrap; /* Quebra linha se a tela for muito pequena */
+            gap: 1rem; /* Espaço entre as imagens em telas menores */
+        }
+
+        .icones-tullu img {
+            width: clamp(60px, 15vw, 100px); /* Tamanho responsivo para os ícones */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
 
         /* Formulário principal */
         #formulario {
@@ -293,7 +340,18 @@
         <div class="hero">
             <h1>Seu negócio está pronto para escalar? 🚀</h1>
             <button onclick="iniciarFormulario()">Começar</button>
-        </div>
+
+            <div class="conteudo-inicial" id="conteudoInicial">
+                <h2>Transforme seu Potencial em Lucro Real.</h2>
+                <p>Na <strong>Tullu Digital</strong>, não vendemos apenas ferramentas; entregamos <strong>Inteligência Comercial com IA Aplicada</strong>. Combinamos **Growth Marketing** com soluções de **automação** de ponta para que seu negócio alcance novos patamares de **vendas e lucro**, sem a necessidade de expandir sua equipe.</p>
+                <p>Nossa visão **360º** vai além do básico: desde a **captação estratégica de leads** e a construção de **funis de vendas** eficazes até a **conversão automatizada** impulsionada por inteligência artificial. Entendemos o mercado e aplicamos esse conhecimento para **acelerar e alavancar** seus resultados.</p>
+                <div class="icones-tullu">
+                    <img src="img.png" alt="Ícone de Lucro">
+                    <img src="img2.png" alt="Ícone de Vendas">
+                    <img src="img3.png" alt="Ícone de Automação">
+                </div>
+            </div>
+            </div>
 
         <div id="formulario">
             <div id="progresso"></div>
@@ -321,8 +379,8 @@
         const respostasUsuario = {}; // Objeto para armazenar as respostas relevantes
 
         function iniciarFormulario() {
-            document.querySelector('.hero').style.display = 'none';
-            document.getElementById('formulario').style.display = 'flex';
+            document.querySelector('.hero').style.display = 'none'; // Esconde toda a seção hero (incluindo o novo conteúdo)
+            document.getElementById('formulario').style.display = 'flex'; // Mostra o formulário
             renderizarPergunta();
             renderizarProgresso();
         }
@@ -389,7 +447,8 @@
                 botaoAvancar.style.borderRadius = '20px';
                 botaoAvancar.style.fontWeight = 'normal';
                 botaoAvancar.style.color = 'white';
-                  // Adiciona os eventos de mouseover e mouseout para o hover
+
+                // Adiciona os eventos de mouseover e mouseout para o hover
                 botaoAvancar.onmouseover = () => {
                     botaoAvancar.style.background = 'linear-gradient(to right, #001630, #02acfc)';
                     botaoAvancar.style.borderColor = '#02acfc';
@@ -398,10 +457,11 @@
                     botaoAvancar.style.background = 'linear-gradient(to right, #001630, black)';
                     botaoAvancar.style.borderColor = '#02acfc'; // Mantém a cor da borda original
                 };
+
+
                 botaoAvancar.onclick = () => {
                     if (input.value.trim() !== '') {
-                        // Armazena a resposta da pergunta 1 (nicho)
-                        if (indice === 0) { // Pergunta 1 é a de índice 0
+                        if (indice === 0) {
                             respostasUsuario['nicho'] = input.value.trim();
                         }
                         avancar();
@@ -417,17 +477,15 @@
                     const botao = document.createElement('button');
                     botao.textContent = op;
                     botao.onclick = () => {
-                        // Armazena a resposta relevante com base no índice da pergunta
-                        // Corrigido para corresponder aos índices do array `perguntas`
-                        if (indice === 3) { // Pergunta 4: "Você já investe em tráfego pago?"
+                        if (indice === 3) {
                             respostasUsuario['trafegoPago'] = op;
-                        } else if (indice === 4) { // Pergunta 5: "Seu atendimento é feito:"
+                        } else if (indice === 4) {
                             respostasUsuario['atendimento'] = op;
-                        } else if (indice === 6) { // Pergunta 6: "Você tem um CRM ou sistema..."
+                        } else if (indice === 6) {
                             respostasUsuario['crm'] = op;
-                        } else if (indice === 7) { // Pergunta 7: "Você já tem alguma IA operando..."
+                        } else if (indice === 7) {
                             respostasUsuario['iaOperando'] = op;
-                        } else if (indice === 9) { // Pergunta 10: "Qual sua meta mensal de faturamento?"
+                        } else if (indice === 9) {
                             respostasUsuario['metaFaturamento'] = op;
                         }
                         avancar();
@@ -442,43 +500,36 @@
 
         function gerarFeedback() {
             let feedbackText = "";
-            let linguagemFormal = false; // Controla se a linguagem deve ser mais formal
+            let linguagemFormal = false;
 
-            // Verifica se as respostas indicam um perfil "leigo"
             const leigoCaptacao = (respostasUsuario['trafegoPago'] === 'Não' || respostasUsuario['trafegoPago'] === 'Tentou mas não deu certo');
             const leigoChatbots = (respostasUsuario['atendimento'] === '100% manual');
             const leigoCRM_IA = (respostasUsuario['crm'] === 'Não' || respostasUsuario['iaOperando'] === 'Não');
 
-            // Define a linguagem com base na meta de faturamento
             if (respostasUsuario['metaFaturamento'] === 'Acima de R$100 mil' || respostasUsuario['metaFaturamento'] === 'R$50 mil – R$100 mil') {
                 linguagemFormal = true;
             }
 
-            // --- Lógica para os feedbacks personalizados ---
-
-            // Cenário 1: Usuário é "leigo" em alguma das áreas-chave (captação, chatbots, IA/CRM)
             if (leigoCaptacao || leigoChatbots || leigoCRM_IA) {
                 if (linguagemFormal) {
                     feedbackText = `
                         ✅ **Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads.** Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
                         <br><br>Sua atual abordagem manual representa uma limitação à escalabilidade. **A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.**
                     `;
-                } else { // Linguagem mais persuasiva/vendedora para metas menores ou leigos em geral
+                } else {
                     feedbackText = `
                         ✅ **Seu negócio tem muito a crescer com nossa ajuda!** Parece que você ainda não está aproveitando ao máximo as ferramentas de tráfego pago e inteligência artificial. Com a Tullu Digital, vamos turbinar sua captação de leads e automatizar seu atendimento para que você venda muito mais, sem precisar contratar mais gente. Somos especialistas em marketing 360º, com a visão de um estrategista digital focado em crescimento e IA. Este formulário que você acabou de preencher é só uma amostra do que fazemos!
                         <br><br>Trabalhar "no manual" está te fazendo perder vendas. **A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!**
                     `;
                 }
             } else {
-                // Cenário 2: Usuário não é "leigo" em nenhuma área (já conhece de IA/CRM/Tráfego/Automação)
-                // Usar o feedback "positivo" original, ajustando a formalidade
                 if (linguagemFormal) {
                     feedbackText = `
                         ✅ **Seu negócio já demonstra um excelente alinhamento com as estratégias de crescimento e IA.** Dada a sua capacidade de gestão de leads, é possível automatizar até 100% do seu atendimento diário. Nossas soluções de chatbot inteligente podem exponencializar seus resultados de fechamento, sem a necessidade de expansão da equipe.
                         <br><br>Adicionalmente, oferecemos estratégias completas em captação de leads, otimização da presença digital e consolidação da autoridade da sua marca. Nosso approach 360º, que inclui a metodologia utilizada neste próprio formulário, visa impulsionar seus objetivos de faturamento.
                         <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. **A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.**
                     `;
-                } else { // Linguagem mais persuasiva/vendedora para metas menores, mesmo para quem já conhece
+                } else {
                     feedbackText = `
                         ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!
                         <br><br>Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.
