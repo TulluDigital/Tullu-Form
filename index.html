@@ -35,6 +35,7 @@
       margin-top: 2rem;
       font-size: 1rem;
       font-weight: bold;
+      animation: fadeIn 1s ease-in-out;
     }
 
     .hero button {
@@ -50,7 +51,7 @@
 
     .hero button:hover {
       background: #02acfc;
-      border-color: black;
+      border-color: white;
     }
 
     #formulario {
@@ -106,7 +107,7 @@
 
     .opcoes button:hover {
       background: #02acfc;
-      border-color: black;
+      border-color: white;
     }
 
     #progresso {
@@ -161,6 +162,16 @@
     }
     .td{
       margin-top:3rem;
+    }
+
+    .feedback{
+      background: linear-gradient(to right, #001630, black);
+  padding: 1.5rem;
+  border-radius: 40px;
+  color: white;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 2rem;
     }
   </style>
 </head>
@@ -288,7 +299,7 @@ botaoAvancar.style.color = 'white';
         renderizarPergunta();
         renderizarProgresso();
       } else {
-        document.getElementById('perguntas').innerHTML = '<p> ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!<br><br> Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.</p>';
+        document.getElementById('perguntas').innerHTML = '<p class="feedback"> ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!<br><br> Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.</p>';
         document.getElementById('progresso').style.display = '<button><a href="https://shre.ink/Mz7C" target="_blank" class="cta-button">Quero vender mais</a></button>';
       }
     }
