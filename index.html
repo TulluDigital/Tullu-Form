@@ -192,17 +192,17 @@ input[type="number"] {
 
   <div class="hero">
     <h1>Seu negócio está pronto para escalar? 🚀</h1>
-    <button onclick="iniciarFormulario()">Começar</button>
+    <button id="botaoComecar" class="botao-proximo">Começar</button>
   </div>
 
   <div id="formulario">
-    <div id="progresso"></div>
-    <div id="perguntas"></div>
+    <div id="progresso" style="display: none;"></div>
+     <div id="container-perguntas">
   </div>
 
   <div class="degrade"></div>
 
-  <script>
+  <script src="seu-script.js">
     const perguntas = [
       { tipo: 'input', texto: '1. Qual é o seu nicho?', placeholder: 'Digite aqui' },
       { tipo: 'opcoes', texto: '2. Quantos atendimentos você faz por mês?', opcoes: ['Até 50', '50-200', '200+'] },
@@ -308,6 +308,15 @@ input[type="number"] {
         document.getElementById('progresso').style.display = '<button><a href="https://shre.ink/Mz7C" target="_blank" class="cta-button">Quero vender mais</a></button>';
       }
     }
+
+    document.addEventListener('DOMContentLoaded', () => {
+  const botaoComecar = document.getElementById('botaoComecar');
+  botaoComecar.addEventListener('click', () => {
+    botaoComecar.style.display = 'none';
+    document.getElementById('progresso').style.display = 'block';
+    renderizarPergunta();
+  });
+});
   </script>
 </body>
 
