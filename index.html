@@ -50,6 +50,9 @@
             width: 100%;
             flex-shrink: 0;
             /* Garante que o header não encolha */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         /* Logo Tullu */
@@ -61,7 +64,40 @@
             display: block;
             margin: 0 auto;
             /* Centraliza o logo */
+            margin-bottom: 2rem;
+            /* Espaçamento entre o logo e o botão de CTA */
         }
+
+        /* Botão "QUERO VENDER MAIS" principal */
+        .btn-main-cta {
+            padding: 0.8rem 1.8rem;
+            font-size: 1.1rem;
+            border: 3px solid #0077B6;
+            /* Nova cor da borda padrão */
+            border-radius: 20px;
+            background-color: #02acfc;
+            /* Nova cor de fundo azul claro */
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc;
+            animation: neonPulse 2s infinite ease-in-out;
+            font-weight: normal;
+            margin-top: 2rem;
+            /* Margem acima do botão */
+            margin-bottom: 2rem;
+            /* Margem abaixo do botão */
+        }
+
+        .btn-main-cta:hover {
+            background: linear-gradient(to right, #02acfc, white);
+            /* Degradê branco no hover */
+            border-color: white;
+            /* Borda branca no hover */
+        }
+
 
         /* Seção Hero (introdução) */
         .hero {
@@ -325,9 +361,11 @@
             0% {
                 box-shadow: 0 0 5px #02acfc, 0 0 10px #02acfc;
             }
+
             50% {
                 box-shadow: 0 0 20px #02acfc, 0 0 40px #02acfc;
             }
+
             100% {
                 box-shadow: 0 0 5px #02acfc, 0 0 10px #02acfc;
             }
@@ -352,42 +390,29 @@
             /* Brilho branco mais opaco */
             font-weight: normal;
             /* Texto do feedback normal */
-        }
-
-        /* Estilos para o botão de CTA abaixo do feedback */
-        .feedback + button {
-            margin-top: 1.5rem;
-            padding: 0.8rem 1.8rem;
-            font-size: 1.1rem;
-            border: 3px solid #0077B6; /* Novo azul da borda padrão */
-            border-radius: 20px;
-            background-color: #02acfc; /* Nova cor de fundo azul claro */
-            cursor: pointer;
-            transition: background 0.3s, border-color 0.3s;
-            color: white;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc;
-            font-weight: normal;
-        }
-
-        .feedback + button:hover {
-            background: linear-gradient(to right, #02acfc, white); /* Degradê branco no hover */
-            border-color: white; /* Borda branca no hover */
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            /* Espaço entre os elementos dentro do feedback */
         }
 
         /* Estilo para os botões de cta dentro do feedback */
         .feedback .cta-interno {
             display: inline-block;
             padding: 0.6rem 1.2rem;
-            margin: 0.5rem;
+            margin: 0.5rem 0;
+            /* Ajuste para não empurrar parágrafos adjacentes */
             border-radius: 20px;
-            background-color: rgba(255, 255, 255, 0.1); /* Fundo discreto */
+            background-color: rgba(255, 255, 255, 0.1);
+            /* Fundo discreto */
             color: white;
             text-decoration: none;
             font-size: 0.9rem;
             transition: background-color 0.3s;
-            font-weight: normal; /* Texto do cta interno normal */
+            font-weight: normal;
+            /* Texto do cta interno normal */
+            text-align: center;
+            /* Centraliza o texto do botão interno */
         }
 
         .feedback .cta-interno:hover {
@@ -411,11 +436,13 @@
 
         /* Exemplo de cor contrastante para um h2 interno (você ajustará no JS) */
         .feedback .beneficios-cta {
-            background: linear-gradient(to right, #37474F, #263238); /* Tom de cinza escuro */
+            background: linear-gradient(to right, #37474F, #263238);
+            /* Tom de cinza escuro */
         }
 
         .feedback .case-sucesso-cta {
-            background: linear-gradient(to right, #1976D2, #1565C0); /* Tom de azul mais intenso */
+            background: linear-gradient(to right, #1976D2, #1565C0);
+            /* Tom de azul mais intenso */
         }
     </style>
 </head>
@@ -606,17 +633,15 @@
             if (leigoCaptacao || leigoChatbots || leigoCRM_IA) {
                 if (linguagemFormal) {
                     feedbackCompleto += `
-                        <p class="feedback">
+                        <p>
                             ✅ Observamos que seu negócio possui um vasto potencial inexplorado em automação e captação de leads. Com a Tullu Digital, podemos implementar estratégias avançadas de tráfego pago e inteligência artificial para otimizar seus processos de atendimento e vendas. Nossas soluções 360º são desenhadas para escalar seu faturamento e transformar sua operação em um modelo de alta performance. Podemos triplicar seus resultados sem expandir sua equipe, aplicando a expertise de um estrategista digital com foco em growth e IA. Este formulário, por exemplo, é uma das estratégias que aplicamos em nossos clientes para identificar oportunidades.
-                            <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero saber mais</a><br><br>Sua atual abordagem manual representa uma limitação à escalabilidade. A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.
-                            <br><br>
-                            <a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Entender meu potencial</a>
+                            <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero saber mais</a>
                         </p>
                     `;
 
                     feedbackCompleto += `
-                        <p class="feedback">
-                            <h2 class="beneficios-cta">Benefícios da Inteligência Comercial com IA</h2>
+                        <p style="margin-top: 1rem; line-height: 1.6;">
+                            Sua atual abordagem manual representa uma limitação à escalabilidade. A Tullu Digital oferece a estrutura para superar esses desafios e alavancar seus negócios.
                             Imagine reduzir seus custos de aquisição de clientes em até 30% e aumentar sua taxa de conversão em 25% com a aplicação de funis de vendas inteligentes e automação. Isso se traduz diretamente em mais lucratividade para o seu negócio sem a necessidade de mais pessoal.
                             <br><br>
                             * **Otimização de Custos:** Menos gasto por cliente.
@@ -628,32 +653,37 @@
 
                 } else { // Linguagem mais persuasiva/vendedora para metas menores ou leigos em geral
                     feedbackCompleto += `
-                        <p class="feedback">
+                        <p>
                             ✅ Seu negócio tem muito a crescer com nossa ajuda! Parece que você ainda não está aproveitando ao máximo as ferramentas de tráfego pago e inteligência artificial. Com a Tullu Digital, vamos turbinar sua captação de leads e automatizar seu atendimento para que você venda muito mais, sem precisar contratar mais gente. Somos especialistas em marketing 360º, com a visão de um estrategista digital focado em crescimento e IA. Este formulário que você acabou de preencher é só uma amostra do que fazemos!
-                            <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Como a Tullu pode me ajudar?</a><br>Trabalhar "no manual" está te fazendo perder vendas. A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!
-                            <br><br>
-                            <a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero aumentar minhas vendas</a>
+                            <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Como a Tullu pode me ajudar?</a>
                         </p>
                     `;
 
-                   
+                    feedbackCompleto += `
+                        <p style="margin-top: 1rem; line-height: 1.6;">
+                            Trabalhar "no manual" está te fazendo perder vendas. A boa notícia é que a Tullu Digital tem o caminho para você virar o jogo!
+                            <br><br>
+                            **Case de Sucesso (Empresa de Pequeno Porte):** Um cliente no setor de **${respostasUsuario['nicho'] || 'serviços'}**, com 50 atendimentos/mês, conseguiu **dobrar seu faturamento em 3 meses** ao implementar nosso funil de vendas automatizado e campanhas de tráfego pago focadas. O atendimento via IA liberou tempo da equipe para focar no fechamento, sem a necessidade de novas contratações.
+                            <br><br>
+                            **Case de Sucesso (Médio Porte):** Outra empresa, com 200+ atendimentos/mês, reduziu em 40% o tempo de resposta a leads e **aumentou em 25% a conversão** utilizando nosso sistema de automação e chatbot inteligente. A IA agora faz a triagem e qualificação, entregando leads "quentes" para a equipe de vendas.
+                            <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Eu quero isso também</a>
+                        </p>
+                    `;
                 }
             } else {
                 // Cenário 2: Usuário não é "leigo" em nenhuma área (já conhece de IA/CRM/Tráfego/Automação)
                 if (linguagemFormal) {
                     feedbackCompleto += `
-                        <p class="feedback">
+                        <p>
                             ✅ Seu negócio já demonstra um excelente alinhamento com as estratégias de crescimento e IA. Dada a sua capacidade de gestão de leads, é possível automatizar até 100% do seu atendimento diário. Nossas soluções de chatbot inteligente podem exponencializar seus resultados de fechamento, sem a necessidade de expansão da equipe.
-                            <br><br>Adicionalmente, oferecemos estratégias completas em captação de leads, otimização da presença digital e consolidação da autoridade da sua marca. Nosso approach 360º, que inclui a metodologia utilizada neste próprio formulário, visa impulsionar seus objetivos de faturamento.
-                            <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Explorar otimização avançada</a>
-                            <a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Falar com um especialista</a>
                         </p>
                     `;
 
                     feedbackCompleto += `
-                        <p class="feedback">
-                            <h2 class="beneficios-cta">Próximos Passos para o Crescimento Exponencial:</h2>
+                        <p style="margin-top: 1rem; line-height: 1.6;">
+                            Adicionalmente, oferecemos estratégias completas em captação de leads, otimização da presença digital e consolidação da autoridade da sua marca. Nosso approach 360º, que inclui a metodologia utilizada neste próprio formulário, visa impulsionar seus objetivos de faturamento.
+                            <br><br>Ainda que seu negócio apresente um nível de maturidade, a ausência de uma estrutura totalmente escalável pode limitar seu potencial máximo. A Tullu Digital está preparada para refinar e expandir sua capacidade de atuação no mercado.
                             Seu negócio já possui uma base sólida. Agora, é o momento de identificar gargalos ocultos e implementar soluções de IA que maximizem cada interação com seu cliente. Desde a personalização em escala até a predição de tendências, a Tullu Digital tem a expertise para levar sua empresa ao próximo nível de eficiência e lucratividade.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero dar o próximo passo</a>
                         </p>
@@ -661,23 +691,22 @@
 
                 } else { // Linguagem mais persuasiva/vendedora para metas menores, mesmo para quem já conhece
                     feedbackCompleto += `
-                        <p class="feedback">
+                        <p>
                             ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!
-                            <br><br>Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Conhecer soluções para escalar</a>
                         </p>
                     `;
 
                     feedbackCompleto += `
-                        <p class="feedback">
-                            <h2 class="case-sucesso-cta">Impulsione suas vendas com a Tullu:</h2>
+                        <p style="margin-top: 1rem; line-height: 1.6;">
+                            Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.
                             Vemos que você já está à frente! Que tal aprimorar ainda mais? Empresas que já usam CRM e IA conosco relatam uma **redução de 35% no custo por lead** e um **aumento de 20% no valor do tempo de vida do cliente (LTV)**. Nosso foco é refinar o que já funciona e abrir novas avenidas de receita para você.
                             <br><br><a href="${WHATSAPP_LINK}" target="_blank" class="cta-interno">Quero otimizar meus resultados</a>
                         </p>
                     `;
                 }
             }
-            return feedbackCompleto;
+            return `<div class="feedback">${feedbackCompleto}</div>`; // Envolve todo o feedback gerado na div .feedback
         }
 
         function avancar() {
@@ -699,11 +728,11 @@
                 const feedbackFinal = gerarFeedback();
 
                 formulario.innerHTML = `
+                    <a href="${WHATSAPP_LINK}" target="_blank" class="btn-main-cta" style="margin-top: 3rem; margin-bottom: 2rem;">QUERO VENDER MAIS</a>
                     ${feedbackFinal}
-                    <button><a href="${WHATSAPP_LINK}" target="_blank" style="color:white; text-decoration:none;">QUERO VENDER MAIS</a></button>
                 `;
                 document.getElementById('progresso').style.display = 'none';
-                formulario.style.justifyContent = 'center';
+                formulario.style.justifyContent = 'flex-start'; // Alinha o botão e feedback ao topo
                 formulario.style.alignItems = 'center';
             }
         }
