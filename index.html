@@ -80,30 +80,27 @@
       color: white;
       font-weight: normal;
       font-size: 1rem;
+      border-radius: 20px;
     }
-input[type="text"],
-input[type="number"] {
-  border-radius: 20px; /* já aplica em todos os inputs */
-}
 
-.botao-proximo {
-  margin-top: 1rem;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  border: 3px solid #02acfc;
-  border-radius: 20px;
-  background: linear-gradient(to right, #001630, black);
-  cursor: pointer;
-  transition: 0.3s;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
+    .botao-proximo {
+      margin-top: 1rem;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      border: 3px solid #02acfc;
+      border-radius: 20px;
+      background: linear-gradient(to right, #001630, black);
+      cursor: pointer;
+      transition: 0.3s;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-.botao-proximo:hover {
-  background: #02acfc;
-  border-color: black;
-}
+    .botao-proximo:hover {
+      background: #02acfc;
+      border-color: black;
+    }
 
     input::placeholder {
       color: rgba(255, 255, 255, 0.4);
@@ -120,204 +117,4 @@ input[type="number"] {
     .opcoes button {
       padding: 0.75rem;
       border: 3px solid #02acfc;
-      background: linear-gradient(to right, #001630, black);
-      cursor: pointer;
-      transition: 0.3s;
-      border-radius: 20px;
-      font-weight: normal;
-    }
-
-    .opcoes button:hover {
-      background: #02acfc;
-      border-color: black;
-    }
-
-    #progresso {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-bottom: 2rem;
-      margin-top: 2rem;
-    }
-
-    .bolinha {
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      background-color: #001630;
-    }
-
-    .bolinha.ativa {
-      background-color: #02acfb;
-    }
-
-    .degrade {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 60% ;
-      background: linear-gradient(to top, #0033bd, transparent);
-      animation: subirDegrade 4s ease forwards;
-      z-index: -1;
-    }
-
-    @keyframes subirDegrade {
-      from {
-        transform: translateY(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <header>
-    <img src="tullu.png" alt="Logo Tullu">
-  </header>
-
-  <div class="hero">
-    <h1>Seu negócio está pronto para escalar? 🚀</h1>
-    <button id="botaoComecar" class="botao-proximo">Começar</button>
-  </div>
-
-  <div id="formulario">
-    <div id="progresso" style="display: none;"></div>
-     <div id="container-perguntas">
-  </div>
-
-  <div class="degrade"></div>
-
-  <script src="seu-script.js">
-    const perguntas = [
-      { tipo: 'input', texto: '1. Qual é o seu nicho?', placeholder: 'Digite aqui' },
-      { tipo: 'opcoes', texto: '2. Quantos atendimentos você faz por mês?', opcoes: ['Até 50', '50-200', '200+'] },
-      { tipo: 'opcoes', texto: '3. Qual o ticket médio dos seus produtos/serviços?', opcoes: ['Até R$100', 'R$100-R$500', 'R$500+'] },
-      { tipo: 'opcoes', texto: '4. Você já investe em tráfego pago?', opcoes: ['Sim', 'Não', 'Tentou mas não deu certo'] },
-      { tipo: 'opcoes', texto: '5. Seu atendimento é feito:', opcoes: ['100% manual', 'Por WhatsApp com algumas respostas prontas', 'Já uso chatbot ou IA para algo'] },
-      { tipo: 'titulo', texto: 'Falta pouco... Está acabando...' },
-      { tipo: 'opcoes', texto: '6. Você tem um CRM ou sistema para organizar seus leads e vendas?', opcoes: ['Sim', 'Não'] },
-      { tipo: 'opcoes', texto: '7. Você já tem alguma IA operando no seu negócio?', opcoes: ['Sim', 'Não'] },
-      { tipo: 'opcoes', texto: '8. Se você dobrasse seus atendimentos hoje, teria estrutura para vender mais?', opcoes: ['Sim', 'Não', 'Talvez'] },
-      { tipo: 'opcoes', texto: '9. Você tem equipe ou trabalha sozinho(a)?', opcoes: ['Tenho equipe', 'Trabalho sozinho(a)'] },
-      { tipo: 'opcoes', texto: '10. Qual sua meta mensal de faturamento?', opcoes: ['Até R$10 mil', 'R$10 mil – R$50 mil', 'R$50 mil – R$100 mil', 'Acima de R$100 mil'] }
-    ];
-
-    let indice = 0;
-
-    function iniciarFormulario() {
-      document.querySelector('.hero').style.display = 'none';
-      document.getElementById('formulario').style.display = 'block';
-      renderizarPergunta();
-      renderizarProgresso();
-    }
-
-    function renderizarProgresso() {
-      const progresso = document.getElementById('progresso');
-      progresso.innerHTML = '';
-      const total = perguntas.filter(p => p.tipo !== 'titulo').length;
-      for (let i = 0; i < total; i++) {
-        const bolinha = document.createElement('div');
-        bolinha.className = 'bolinha';
-        if (i <= indice) bolinha.classList.add('ativa');
-        progresso.appendChild(bolinha);
-      }
-    }
-
-    function renderizarPergunta() {
-  const container = document.getElementById('perguntas');
-  container.innerHTML = '';
-
-  // pular títulos automaticamente e avançar
-  while (indice < perguntas.length && perguntas[indice].tipo === 'titulo') {
-    const titulo = document.createElement('h2');
-    titulo.textContent = perguntas[indice].texto;
-    container.appendChild(titulo);
-    indice++;
-  }
-
-  // se acabou
-  if (indice >= perguntas.length) {
-    document.getElementById('perguntas').innerHTML = '<p> ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!<br><br> Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.</p>';
-    document.getElementById('progresso').innerHTML = `<button class="botao-proximo"><a href="https://shre.ink/Mz7C" target="_blank" style="color: white; text-decoration: none;">Quero vender mais</a></button>`;
-    return;
-  }
-
-  const atual = perguntas[indice];
-  const bloco = document.createElement('div');
-  bloco.className = 'pergunta';
-
-  const pergunta = document.createElement('h2');
-  pergunta.textContent = atual.texto;
-  bloco.appendChild(pergunta);
-
-  if (atual.tipo === 'input') {
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = atual.placeholder || 'Digite aqui';
-    input.id = 'respostaInput';
-    bloco.appendChild(input);
-
-    const botaoAvancar = document.createElement('button');
-    botaoAvancar.textContent = 'Próximo';
-    botaoAvancar.className = 'botao-proximo';
-    botaoAvancar.onclick = () => {
-      if (input.value.trim() !== '') {
-        avancar();
-      } else {
-        alert('Por favor, preencha a resposta antes de avançar.');
-      }
-    };
-    bloco.appendChild(botaoAvancar);
-  } else if (atual.tipo === 'opcoes') {
-    const opcoes = document.createElement('div');
-    opcoes.className = 'opcoes';
-    atual.opcoes.forEach(op => {
-      const botao = document.createElement('button');
-      botao.textContent = op;
-      botao.onclick = () => avancar();
-      opcoes.appendChild(botao);
-    });
-    bloco.appendChild(opcoes);
-  }
-
-  container.appendChild(bloco);
-}
-
-    function avancar() {
-      indice++;
-      if (indice < perguntas.length) {
-        renderizarPergunta();
-        renderizarProgresso();
-      } else {
-        document.getElementById('perguntas').innerHTML = '<p> ✅ Com seu volume de leads, você já pode automatizar até 100% do seu atendimento por dia! Um chatbot inteligente pode triplicar seu fechamento sem aumentar sua equipe. Não só isso: vamos escalar suas vendas com estratégias de captação de leads, presença digital e fortalecimento da autoridade da sua marca! Não somos apenas uma assessoria de publicidade — somos 360º. Este formulário, por exemplo, é uma das estratégias que aplicamos nos negócios dos nossos clientes!<br><br> Seu negócio ainda está no manual. Isso significa que você está perdendo oportunidades diariamente por falta de estrutura escalável. A boa notícia: com a Tullu Digital, você pode virar o jogo.</p>';
-        document.getElementById('progresso').style.display = '<button><a href="https://shre.ink/Mz7C" target="_blank" class="cta-button">Quero vender mais</a></button>';
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-  const botaoComecar = document.getElementById('botaoComecar');
-  botaoComecar.addEventListener('click', () => {
-    botaoComecar.style.display = 'none';
-    document.getElementById('progresso').style.display = 'block';
-    renderizarPergunta();
-  });
-});
-  </script>
-</body>
-
-</html>
+      background:
