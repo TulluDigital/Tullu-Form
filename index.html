@@ -18,8 +18,18 @@
     body {
   background: black;
   overflow: hidden; /* impede scroll */
-  height: 100vh; /* limita altura total da tela */
+  height: 100vh;
   display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+    .td {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
@@ -58,13 +68,13 @@
       border-color: white;
     }
 
-    #formulario {
-      max-width: 600px;
-      margin: 3rem auto;
-      padding: 1rem;
-      display: none;
-      animation: fadeIn 1s ease-in-out;
-    }
+   #formulario {
+  max-width: 600px;
+  padding: 1rem;
+  display: none;
+  animation: fadeIn 1s ease-in-out;
+  overflow: hidden;
+}
 
     .pergunta {
       margin-bottom: 2rem;
@@ -165,7 +175,9 @@
       }
     }
   
-
+#formulario {
+  margin: 0 auto;
+}
     .feedback{
       background: linear-gradient(to right, #001630, black);
   padding: 1.5rem;
