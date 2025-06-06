@@ -1,4 +1,4 @@
-<!DOCTYPE html>More actions
+<!DOCTYPE html>
 <html lang="pt-BR">
 
 <head>
@@ -178,15 +178,23 @@
 #formulario {
   margin: 0 auto;
 }
-    .feedback{
-      background: linear-gradient(to right, #001630, black);
+    .feedback {
+  background: linear-gradient(to right, #001630, black);
   padding: 1.5rem;
   border-radius: 40px;
   color: white;
   font-size: 1rem;
   line-height: 1.6;
   margin-top: 2rem;
-    }
+
+  /* Adaptação para se ajustar ao tamanho da tela */
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: break-word;
+
+  /* Se for preciso rolar, deixa rolar */
+  overflow: auto;
+}
   </style>
 </head>
 
