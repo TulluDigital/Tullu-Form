@@ -16,13 +16,17 @@
     }
 
     body {
-      background: black;
-      overflow-x: hidden;
-    }
+  background: black;
+  overflow: hidden; /* impede scroll */
+  height: 100vh; /* limita altura total da tela */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
     header {
-      padding: 1rem;
-      text-align: center;
+      padding: 4rem 1rem 1rem 1rem; /* afastamento do topo */
+  text-align: center;
     }
 
     header img {
@@ -160,9 +164,7 @@
         transform: translateY(0);
       }
     }
-    .td{
-      margin-top:3rem;
-    }
+  
 
     .feedback{
       background: linear-gradient(to right, #001630, black);
