@@ -233,10 +233,10 @@
         /* Estilo do parágrafo de feedback */
         .feedback {
             background: linear-gradient(to right, #001630, black);
-            padding: 1rem;
+            /* Aumentei o padding para dar mais respiro ao texto */
+            padding: 1.5rem; 
             border-radius: 40px;
-            /* Garante que a fonte seja aplicada */
-            font-family: 'Acumin Pro', sans-serif; 
+            font-family: 'Acumin Pro', sans-serif;
             color: white;
             font-size: clamp(0.9rem, 3.5vw, 1.1rem);
             line-height: 1.5;
@@ -259,9 +259,8 @@
             color: white;
             text-decoration: none;
             display: inline-block;
-            /* Aplica o brilho neon e a animação de pulso */
             box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc; 
-            animation: neonPulse 2s infinite ease-in-out; /* Animação de pulso */
+            animation: neonPulse 2s infinite ease-in-out;
         }
 
         .feedback + button:hover {
@@ -317,20 +316,20 @@
             const progresso = document.getElementById('progresso');
             progresso.innerHTML = '';
             const total = perguntas.filter(p => p.tipo !== 'titulo').length; // Conta apenas perguntas reais
-            // A bolinha ativa deve ser o índice atual da pergunta (base 0)
+            let perguntasReaisRespondidas = 0;
+
+            // Calcula quantas perguntas "reais" já foram respondidas
+            for (let j = 0; j < indice; j++) {
+                if (perguntas[j].tipo !== 'titulo') {
+                    perguntasReaisRespondidas++;
+                }
+            }
+
             for (let i = 0; i < total; i++) {
                 const bolinha = document.createElement('div');
                 bolinha.className = 'bolinha';
-                // Verifica se a bolinha corresponde ao índice da pergunta atual
-                // e não ignora títulos na contagem das bolinhas, mas pula o título na exibição.
-                // Ajustamos a lógica para considerar apenas as perguntas 'reais' no progresso.
-                let perguntasReaisPassadas = 0;
-                for (let j = 0; j < indice; j++) {
-                    if (perguntas[j].tipo !== 'titulo') {
-                        perguntasReaisPassadas++;
-                    }
-                }
-                if (i < perguntasReaisPassadas) { // A bolinha fica ativa se a pergunta correspondente já foi respondida
+                // A bolinha fica ativa se o número da bolinha (i) for menor ou igual ao de perguntas reais respondidas
+                if (i < perguntasReaisRespondidas) { 
                     bolinha.classList.add('ativa');
                 }
                 progresso.appendChild(bolinha);
@@ -388,7 +387,7 @@
                 bloco.appendChild(botaoAvancar);
             } else if (atual.tipo === 'opcoes') {
                 const opcoes = document.createElement('div');
-                opcoes.className = 'opcoes';
+opcoes.className = 'opcoes';
                 atual.opcoes.forEach(op => {
                     const botao = document.createElement('button');
                     botao.textContent = op;
