@@ -389,6 +389,15 @@
                 botaoAvancar.style.borderRadius = '20px';
                 botaoAvancar.style.fontWeight = 'normal';
                 botaoAvancar.style.color = 'white';
+                  // Adiciona os eventos de mouseover e mouseout para o hover
+                botaoAvancar.onmouseover = () => {
+                    botaoAvancar.style.background = 'linear-gradient(to right, #001630, #02acfc)';
+                    botaoAvancar.style.borderColor = '#02acfc';
+                };
+                botaoAvancar.onmouseout = () => {
+                    botaoAvancar.style.background = 'linear-gradient(to right, #001630, black)';
+                    botaoAvancar.style.borderColor = '#02acfc'; // Mantém a cor da borda original
+                };
                 botaoAvancar.onclick = () => {
                     if (input.value.trim() !== '') {
                         // Armazena a resposta da pergunta 1 (nicho)
