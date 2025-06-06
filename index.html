@@ -14,6 +14,7 @@
             box-sizing: border-box;
             font-family: 'Acumin Pro', sans-serif;
             color: white;
+            /* Cor padrão do texto para branco */
         }
 
         /* Estilos do corpo da página - Permite scroll na tela toda */
@@ -66,7 +67,8 @@
         .hero {
             text-align: center;
             font-size: 1rem;
-            font-weight: bold;
+            /* Alterado para font-weight normal */
+            font-weight: normal;
             animation: fadeIn 1s ease-in-out;
             padding: 0 1rem;
             flex-grow: 1;
@@ -86,6 +88,7 @@
             margin-bottom: 1.5rem;
             /* Espaçamento entre o título e o botão */
             font-size: clamp(1.5rem, 5vw, 2.5rem);
+            font-weight: 700; /* Mantém o negrito do h1 */
         }
 
         .hero button {
@@ -98,6 +101,7 @@
             transition: 0.3s;
             color: white;
             /* Garante que o texto do botão seja branco */
+            font-weight: normal; /* Botão com texto normal */
         }
 
         .hero button:hover {
@@ -128,23 +132,32 @@
         }
 
         .conteudo-inicial h2 {
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 1rem;
             font-size: clamp(1.2rem, 4vw, 1.8rem);
             /* Novos estilos para o h2 do conteúdo inicial */
-            background: linear-gradient(to right, #001630, #02acfc); /* Gradiente lateral */
-            padding: 0.8rem 1.5rem; /* Padding para afastar o texto da borda */
-            border-radius: 20px; /* Cantos arredondados */
-            margin-left: auto; /* Centraliza o bloco do h2 */
-            margin-right: auto; /* Centraliza o bloco do h2 */
-            max-width: fit-content; /* Ajusta a largura ao conteúdo */
-            margin-bottom: 1.5rem; /* Espaçamento entre h2 e ícones */
+            background: linear-gradient(to right, #02acfc, #001630);
+            /* Degradê sutil de azul ciano para azul escuro/preto */
+            padding: 0.8rem 1.5rem;
+            /* Padding para afastar o texto da borda */
+            border-radius: 20px;
+            /* Cantos arredondados */
+            margin-left: auto;
+            /* Centraliza o bloco do h2 */
+            margin-right: auto;
+            /* Centraliza o bloco do h2 */
+            max-width: fit-content;
+            /* Ajusta a largura ao conteúdo */
+            margin-bottom: 1.5rem;
+            /* Espaçamento entre h2 e ícones */
         }
 
         .conteudo-inicial p {
             font-size: clamp(0.9rem, 3.5vw, 1.1rem);
             line-height: 1.6;
             margin-bottom: 1rem;
+            font-weight: normal;
+            /* Texto do parágrafo normal */
         }
 
         .icones-tullu {
@@ -198,7 +211,7 @@
         }
 
         .pergunta h2 {
-            font-weight: bold;
+            font-weight: 700;
             margin-bottom: 0.8rem;
             font-size: clamp(1rem, 4vw, 1.5rem);
         }
@@ -238,6 +251,7 @@
             transition: 0.3s;
             border-radius: 20px;
             font-weight: normal;
+            /* Texto do botão normal */
             font-size: clamp(0.9rem, 3vw, 1.1rem);
             white-space: normal;
             word-wrap: break-word;
@@ -331,12 +345,16 @@
             max-width: 100%;
             box-sizing: border-box;
             overflow-wrap: break-word;
-            border: 3px solid white; /* Contorno branco */
-            box-shadow: 0 0 15px white, 0 0 30px white; /* Brilho branco */
+            border: 3px solid white;
+            /* Contorno branco */
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4), 0 0 15px rgba(255, 255, 255, 0.2);
+            /* Brilho branco mais opaco */
+            font-weight: normal;
+            /* Texto do feedback normal */
         }
 
         /* Estilos para o botão de CTA no feedback */
-        .feedback + button {
+        .feedback+button {
             margin-top: 1.5rem;
             padding: 0.8rem 1.8rem;
             font-size: 1.1rem;
@@ -350,9 +368,10 @@
             display: inline-block;
             box-shadow: 0 0 15px #02acfc, 0 0 30px #02acfc;
             animation: neonPulse 2s infinite ease-in-out;
+            font-weight: normal; /* Botão de CTA com texto normal */
         }
 
-        .feedback + button:hover {
+        .feedback+button:hover {
             background: linear-gradient(to right, #001630, #02acfc);
             border-color: #02acfc;
         }
