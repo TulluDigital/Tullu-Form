@@ -7,7 +7,6 @@
     <title>Tullu Forms</title>
     <link href="https://fonts.googleapis.com/css2?family=Acumin+Pro:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* Reset básico e fontes */
         * {
             margin: 0;
             padding: 0;
@@ -16,17 +15,15 @@
             color: white;
         }
 
-        /* Estilos do corpo da página */
         body {
             background: black;
-            overflow: hidden; /* Impede o scroll na página principal */
+            overflow: hidden;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* Contêiner principal (td) */
         .td {
             width: 100%;
             height: 100vh;
@@ -38,20 +35,17 @@
             padding: 1rem; /* Adiciona um padding geral para respiro */
         }
 
-        /* Cabeçalho */
         header {
             padding: 1rem; /* Reduzido para dar mais espaço ao formulário */
             text-align: center;
         }
 
-        /* Logo Tullu */
         header img {
-            width: clamp(100px, 20vw, 200px); /* Tamanho do logo responsivo */
+            width: clamp(100px, 20vw, 200px); /* Ajusta o tamanho máximo do logo */
             max-height: 10vh; /* Limita a altura do logo para não ocupar muito espaço */
             height: auto;
         }
 
-        /* Seção Hero (introdução) */
         .hero {
             text-align: center;
             margin-top: 1rem;
@@ -77,11 +71,10 @@
             border-color: #02acfc;
         }
 
-        /* Formulário principal */
         #formulario {
             max-width: 600px;
             padding: 1rem;
-            display: none; /* Inicia oculto, controlado por JS */
+            display: none;
             animation: fadeIn 1s ease-in-out;
             overflow-y: auto; /* Permite scroll interno se o conteúdo for muito grande */
             max-height: 80vh; /* Limita a altura máxima do formulário para caber na tela */
@@ -93,7 +86,7 @@
             margin: 0 auto;
         }
 
-        /* Estilo de cada pergunta */
+
         .pergunta {
             margin-bottom: 1.5rem; /* Ajustado para menos espaço */
             animation: fadeIn 1s ease-in-out;
@@ -107,7 +100,6 @@
             font-size: clamp(1rem, 4vw, 1.5rem); /* Tamanho da fonte responsivo */
         }
 
-        /* Inputs de texto e número */
         input[type="text"],
         input[type="number"] {
             width: 100%;
@@ -125,7 +117,6 @@
             font-weight: normal;
         }
 
-        /* Opções de botões */
         .opcoes {
             display: flex;
             flex-direction: column;
@@ -152,7 +143,6 @@
             border-color: #02acfc;
         }
 
-        /* Indicador de progresso (bolinhas) */
         #progresso {
             display: flex;
             justify-content: center;
@@ -172,7 +162,6 @@
             background-color: #02acfb;
         }
 
-        /* Degradê de fundo */
         .degrade {
             position: fixed;
             bottom: 0;
@@ -183,7 +172,6 @@
             z-index: -1;
         }
 
-        /* Animações */
         @keyframes subirDegrade {
             from {
                 transform: translateY(100%);
@@ -208,7 +196,6 @@
             }
         }
 
-        /* Estilo do parágrafo de feedback */
         .feedback {
             background: linear-gradient(to right, #001630, black);
             padding: 1rem; /* Padding ajustado para ser mais compacto */
