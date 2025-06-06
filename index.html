@@ -236,16 +236,36 @@
       pergunta.textContent = atual.texto;
       bloco.appendChild(pergunta);
 
-     if (atual.tipo === 'input') {
+    if (atual.tipo === 'input') {
   const input = document.createElement('input');
   input.type = 'text';
   input.placeholder = atual.placeholder || 'Digite aqui';
-  input.id = 'respostaInput'; // adiciona um id para possível uso futuro
+  input.id = 'respostaInput';
+  input.style.borderRadius = '20px'; // <-- Adicionado o border-radius aqui
   bloco.appendChild(input);
 
   const botaoAvancar = document.createElement('button');
   botaoAvancar.textContent = 'Próximo';
-  botaoAvancar.style.marginTop = '1rem';
+  botaoAvancar.style.marginTop = '2rem';
+  botaoAvancar.style.padding = '1rem 2rem';
+  botaoAvancar.style.fontSize = '1.2rem';
+  botaoAvancar.style.border = '3px solid #02acfc';
+  botaoAvancar.style.borderRadius = '20px';
+  botaoAvancar.style.background = 'linear-gradient(to right, #001630, black)';
+  botaoAvancar.style.cursor = 'pointer';
+  botaoAvancar.style.transition = '0.3s';
+  botaoAvancar.style.display = 'block'; // Centralizar como bloco
+  botaoAvancar.style.marginLeft = 'auto';
+  botaoAvancar.style.marginRight = 'auto';
+  botaoAvancar.onmouseover = function () {
+    botaoAvancar.style.background = '#02acfc';
+    botaoAvancar.style.borderColor = 'black';
+  };
+  botaoAvancar.onmouseout = function () {
+    botaoAvancar.style.background = 'linear-gradient(to right, #001630, black)';
+    botaoAvancar.style.borderColor = '#02acfc';
+  };
+
   botaoAvancar.onclick = () => {
     if (input.value.trim() !== '') {
       avancar();
@@ -253,6 +273,8 @@
       alert('Por favor, preencha a resposta antes de avançar.');
     }
   };
+  bloco.appendChild(botaoAvancar);
+};
   bloco.appendChild(botaoAvancar);
 } else if (atual.tipo === 'opcoes') {
         const opcoes = document.createElement('div');
